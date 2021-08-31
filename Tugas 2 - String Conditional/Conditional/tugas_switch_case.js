@@ -1,17 +1,14 @@
 var hari = 1;
 var bulan = 12;
-var tahun = 2000;
+var tahun = 2300;
 
 switch(true){
     case hari > 31 || hari < 1:
         hari = 'Masukkan tanggal antara 1 - 31';
         break;
-}
-
-switch(true){
     case tahun > 2200 || tahun < 1900:
-        tahun = 'Masukkan tahun antara 1900 - 2200';
-        break;
+            tahun = 'Masukkan tahun antara 1900 - 2200';
+            break;
 }
 
 switch(bulan){
