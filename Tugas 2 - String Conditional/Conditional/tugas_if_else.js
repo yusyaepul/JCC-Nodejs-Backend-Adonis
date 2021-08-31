@@ -1,5 +1,5 @@
-var nama = "";
-var peran = ""; //Peran tersedia : Penyihir, Guard, Warewolf
+var nama = "Yus";
+var peran = "Penyihir"; //Peran tersedia : Penyihir, Guard, Warewolf
 
 if(nama == ""){
     console.log('Nama harus diisi!');

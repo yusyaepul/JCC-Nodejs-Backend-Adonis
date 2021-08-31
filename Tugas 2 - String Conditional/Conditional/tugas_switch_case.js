@@ -1,5 +1,5 @@
-var hari = 31;
-var bulan = 1;
+var hari = 29;
+var bulan = 11;
 var tahun = 1992;
 
 if(hari > 31 || hari < 1){
