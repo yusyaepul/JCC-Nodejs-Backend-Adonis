@@ -1,14 +1,17 @@
 var hari = 1;
 var bulan = 12;
-var tahun = 2300;
+var tahun = 2000;
 
 switch(true){
     case hari > 31 || hari < 1:
         hari = 'Masukkan tanggal antara 1 - 31';
         break;
     case tahun > 2200 || tahun < 1900:
-            tahun = 'Masukkan tahun antara 1900 - 2200';
-            break;
+        tahun = 'Masukkan tahun antara 1900 - 2200';
+        break;
+    case bulan > 12 || bulan < 1:
+        bulan = 'Masukkan bulan antara 1 - 12';
+        break;
 }
 
 switch(bulan){
@@ -48,14 +51,12 @@ switch(bulan){
     case 12:
         bulan = 'Desember';
         break;
-    default:
-        bulan = 'Masukkan bulan anatara 1 - 12';
 }
 
 return console.log(hari+' '+bulan+' '+tahun);
 
 /* 
 Output : 1 Desember 2000
-Jika bulan 0 atau 13, Output bulan jadi : Masukkan bulan anatara 1 - 12
+Jika bulan besar dari 13 atau kurang dari 1900 Output bulan jadi : Masukkan bulan anatara 1 - 12
 Jika tahun lebih besar dari 2200 atau kurang dari 1900 Output tahun jadi : Masukkan tahun antara 1900 - 2200
 */
