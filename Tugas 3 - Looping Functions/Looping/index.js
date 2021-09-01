@@ -18,11 +18,11 @@ switch (args[2]) {
     case 'persegiPanjang':
         var panjang = args[3];
         var lebar = args[4];
-        console.log(persegiPanjang(panjang, lebar));
+        persegiPanjang(panjang, lebar);
         break;
     case 'tangga':
         var sisi = args[3];
-        console.log(tangga(sisi));
+        tangga(sisi);
         break;
     case 'catur':
         var sisi = args[3];

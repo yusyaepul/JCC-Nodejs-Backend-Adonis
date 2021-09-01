@@ -31,12 +31,12 @@ function ganjilGenap(){
 }
 
 function persegiPanjang(panjang, lebar){
-    var hasil = '';
     for (var i = 0; i < lebar; i++) {
+        var hasil = '';
         for (var j = 0; j < panjang; j++) {
-            hasil += '# ';
+            hasil = hasil + '#';
         }
-        hasil += '\n';
+        console.log(hasil);
     }
     return hasil;
 }
@@ -44,10 +44,8 @@ function persegiPanjang(panjang, lebar){
 function tangga(sisi) {
     var hasil = '';
     for (var i = 0; i < sisi; i++) {
-        for (var j = 0; j <= i; j++) {
-            hasil += '# ';
-        }
-        hasil += '\n';
+        hasil = hasil + '#';
+        console.log(hasil);
     }
     return hasil;
 }
@@ -58,17 +56,17 @@ function catur(sisi){
         if(i % 2 == 0){
             for(var j = 1; j <= sisi; j++){
                 if(j % 2 ==0){
-                    hasil += '#';
-                } else {
                     hasil += ' ';
+                } else {
+                    hasil += '#';
                 }
             }
         } else {
             for(var j = 1; j <= sisi; j++){
                 if(j % 2 == 0){
-                    hasil += ' ';
-                } else {
                     hasil += '#';
+                } else {
+                    hasil += ' ';
                 }
             }
         }
