@@ -30,12 +30,59 @@ function ganjilGenap(){
     }   
 }
 
-function persegiPanjang(){
-    
+function persegiPanjang(panjang, lebar){
+    var hasil = '';
+    for (var i = 0; i < lebar; i++) {
+        for (var j = 0; j < panjang; j++) {
+            hasil += '# ';
+        }
+        hasil += '\n';
+    }
+    return hasil;
+}
+
+function tangga(sisi) {
+    var hasil = '';
+    for (var i = 0; i < sisi; i++) {
+        for (var j = 0; j <= i; j++) {
+            hasil += '# ';
+        }
+        hasil += '\n';
+    }
+    return hasil;
+}
+
+function catur(sisi){
+    var hasil = '';
+    for (var i = 1; i <= sisi; i++) {
+        if(i % 2 == 0){
+            for(var j = 1; j <= sisi; j++){
+                if(j % 2 ==0){
+                    hasil += '#';
+                } else {
+                    hasil += ' ';
+                }
+            }
+        } else {
+            for(var j = 1; j <= sisi; j++){
+                if(j % 2 == 0){
+                    hasil += ' ';
+                } else {
+                    hasil += '#';
+                }
+            }
+        }
+
+        hasil += '\n';
+        
+    }
+    return hasil; 
 }
 
 module.exports = {
     majuMundur: majuMundur,
     ganjilGenap: ganjilGenap,
-    persegiPanjang: persegiPanjang
+    persegiPanjang: persegiPanjang,
+    tangga: tangga,
+    catur: catur
 }

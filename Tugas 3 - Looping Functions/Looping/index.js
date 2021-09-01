@@ -3,6 +3,8 @@ var funcLib = require('./lib/funcLib');
 var majuMundur = funcLib.majuMundur;
 var ganjilGenap = funcLib.ganjilGenap;
 var persegiPanjang = funcLib.persegiPanjang;
+var tangga = funcLib.tangga;
+var catur = funcLib.catur;
 
 var args = process.argv;
 
@@ -14,7 +16,17 @@ switch (args[2]) {
         ganjilGenap();
         break;
     case 'persegiPanjang':
-        persegiPanjang();
+        var panjang = args[3];
+        var lebar = args[4];
+        console.log(persegiPanjang(panjang, lebar));
+        break;
+    case 'tangga':
+        var sisi = args[3];
+        console.log(tangga(sisi));
+        break;
+    case 'catur':
+        var sisi = args[3];
+        console.log(catur(sisi));
         break;
     default:
         console.log('perintah yang di masukkan salah!');
