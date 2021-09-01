@@ -26,7 +26,7 @@ switch (args[2]) {
         break;
     case 'catur':
         var sisi = args[3];
-        console.log(catur(sisi));
+        catur(sisi);
         break;
     default:
         console.log('perintah yang di masukkan salah!');

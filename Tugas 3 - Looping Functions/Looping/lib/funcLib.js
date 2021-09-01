@@ -17,15 +17,15 @@ function majuMundur(){
 
 function ganjilGenap(){
     console.log('OUTPUT');
-    for (var x=1; x<=20; x++) {
-        if (x % 6 === 3) {
-            console.log(x +  " I Love Coding");
+    for(var i=1; i<=20; i++) {
+        if (i % 6 === 3) {
+            console.log(i +  " I Love Coding");
         }
-        else if (x % 2 === 0) {
-            console.log(x + " Berkualitas");   
+        else if (i % 2 === 0) {
+            console.log(i + " Berkualitas");   
         }
-        else {
-            console.log(x + " Santai");
+        else if (i % 2 == 1){
+            console.log(i + " Santai");
         }
     }   
 }
@@ -51,28 +51,26 @@ function tangga(sisi) {
 }
 
 function catur(sisi){
-    var hasil = '';
     for (var i = 1; i <= sisi; i++) {
+        hasil = '';
         if(i % 2 == 0){
             for(var j = 1; j <= sisi; j++){
-                if(j % 2 ==0){
-                    hasil += ' ';
+                if(j % 2 == 0){
+                    hasil = hasil + ' ';
                 } else {
-                    hasil += '#';
+                    hasil = hasil + '#';
                 }
             }
         } else {
             for(var j = 1; j <= sisi; j++){
                 if(j % 2 == 0){
-                    hasil += '#';
+                    hasil = hasil + '#';
                 } else {
-                    hasil += ' ';
+                    hasil = hasil + ' ';
                 }
             }
         }
-
-        hasil += '\n';
-        
+        console.log(hasil);
     }
     return hasil; 
 }
