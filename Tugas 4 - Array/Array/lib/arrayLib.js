@@ -74,7 +74,7 @@ function dataHandling(){
     for(let i = 0; i < input.length; i++){
         var no_id = 'Nomor ID: ' + input[i][0];
         var nama_lengkap = 'Nama Lengkap: ' + input[i][1];
-        var ttl = 'TTL: ' + input[i][3];
+        var ttl = 'TTL: ' + input[i][2] + ' ' + input[i][3];
         var hobi = 'Hobi: ' + input[i][4];
 
         console.log(no_id + '\n', nama_lengkap + '\n', ttl + '\n', hobi + '\n');
