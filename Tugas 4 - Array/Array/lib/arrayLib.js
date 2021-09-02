@@ -82,11 +82,15 @@ function dataHandling(){
 }
 
 function balikKata(kata) {
-    var text = "";
+    var text = '';
     for (var i = kata.length - 1; i >= 0; i--) {
-        text += kata[i];
+        if (kata[i] == ',') {
+          text+= ' ';
+        } else {
+          text+= kata[i];
+        }
     }
-    return text.replace(/,/g, ' ');
+    return text;
 }
 
 module.exports = {
