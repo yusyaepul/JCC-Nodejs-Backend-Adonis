@@ -94,30 +94,42 @@ switch (args[2]) {
         break;
     case 'naikAngkot':
         function naikAngkot(arrPenumpang){
+            var rute = ['A', 'B', 'C', 'D', 'E', 'F']
             var output = [];
-
+          
             for (var i = 0; i < arrPenumpang.length; i++) {
-
-        
-                console.log(i+1+'. '+fullName+': { firstName: '+firstName+', lastName: '+lastName+', gender: '+gender+', age: '+age+' }');
-            }
-            
-            return output;
-
-            function range(start,stop) {
+              var nama = arrPenumpang[i][0];
+              var dari = arrPenumpang[i][1];
+              var ke = arrPenumpang[i][2];
+              
+              function range(start,stop) {
                 var result=[];
                 for (var j=start.charCodeAt(0),end=stop.charCodeAt(0); j<=end; ++j){
                   result.push(String.fromCharCode(j));
                 }
                 return result;
+              }
+              
+              var rutenya = range(dari, ke);
+              var bayar = (rutenya.length - 1)*2000;
+              
+              var deklarasi = {};
+                deklarasi.penumpang = nama;
+                deklarasi.naikDari = dari;
+                deklarasi.tujuan = ke;
+                deklarasi.bayar = bayar;
+
+              output.push(deklarasi);
             }
               
-            var rutenya = range('B', 'F');
-              
-            console.log(rutenya.length-1)
-        }
-        var penumpang = [['Dimitri', 'B', 'F'], ['Icha', 'A', 'B']];
-        arrayToObject(penumpang);
+            
+            console.log(output);
+          }
+
+          var penumpang = [['Dimitri', 'B', 'F'], ['Icha', 'A', 'B']];
+          naikAngkot(penumpang);
+          var penumpang2 = [['Dimitri', 'B', 'F']];
+          naikAngkot(penumpang2);
         break;
     default:
         console.log('perintah yang di masukkan salah!');
