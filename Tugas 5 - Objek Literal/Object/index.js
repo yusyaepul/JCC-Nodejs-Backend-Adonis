@@ -7,7 +7,7 @@ switch (args[2]) {
             var now = new Date();
             var thisYear = now.getFullYear();
             
-            for (var i = 0; i < arr.length; i += 1) {
+            for (var i = 0; i < arr.length; i++) {
                 var item = arr[i];
                 var firstName = item[0];
                 var lastName = item[1];
@@ -35,6 +35,89 @@ switch (args[2]) {
         var people2 = [ ["Tony", "Stark", "male", 1980], ["Pepper", "Pots", "female", 2023] ];
         arrayToObject(people2);
         //arrayToObject([]);
+        break;
+    case 'shoppingTime':
+        var memberId = args[3];
+        var money = args[4];
+
+        function shoppingTime(memberId, money){
+            var output = {};
+            var money = parseInt(money);
+            var memberId;
+
+            var barang = [
+                ["Sepatu Stacattu", 1500000],
+                ["Baju Zoro", 500000],
+                ["Baju H&N", 250000],
+                ["Sweater Uniklooh", 175000],
+                ["Casing Handphone", 50000]
+            ];
+
+            var hargaBelanja = [];
+            var listPurchased = [];
+            var sum = 0;
+            var changeMoney = 0;
+
+            if(memberId === undefined){
+                console.log('Mohon maaf, Toko X hanya berlaku untuk member');
+            }
+
+            if(money < 50000){
+                console.log('Mohon maaf, uang tidak cukup');
+            }
+
+            for (i = 0; i < barang.length; i++){
+                var nama_barang = barang[i][0];
+                var harga = barang[i][1];
+                
+                if(harga < money){
+                    listPurchased.push(nama_barang);
+                    hargaBelanja.push(harga);
+                }
+            }
+              
+            for (j = 0; j < hargaBelanja.length; j++){
+                sum += hargaBelanja[j];
+            }
+
+            changeMoney = money - sum;
+
+            output.memberId = memberId;
+            output.money = money;
+            output.listPurchased = listPurchased;
+            output.changeMoney = changeMoney;
+
+            console.log(output);
+            console.log(sum);
+        }
+        shoppingTime(memberId, money);
+        break;
+    case 'naikAngkot':
+        function naikAngkot(arrPenumpang){
+            var output = [];
+
+            for (var i = 0; i < arrPenumpang.length; i++) {
+
+        
+                console.log(i+1+'. '+fullName+': { firstName: '+firstName+', lastName: '+lastName+', gender: '+gender+', age: '+age+' }');
+            }
+            
+            return output;
+
+            function range(start,stop) {
+                var result=[];
+                for (var j=start.charCodeAt(0),end=stop.charCodeAt(0); j<=end; ++j){
+                  result.push(String.fromCharCode(j));
+                }
+                return result;
+            }
+              
+            var rutenya = range('B', 'F');
+              
+            console.log(rutenya.length-1)
+        }
+        var penumpang = [['Dimitri', 'B', 'F'], ['Icha', 'A', 'B']];
+        arrayToObject(penumpang);
         break;
     default:
         console.log('perintah yang di masukkan salah!');
