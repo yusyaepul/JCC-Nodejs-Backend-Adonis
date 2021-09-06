@@ -1,0 +1,19 @@
+{
+  "name": "tugas6-es6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel",
+    "dev": "npm run babel src -- --out-dir dist --watch"
+  },
+  "keywords": [],
+  "author": "Yusyaepul",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
