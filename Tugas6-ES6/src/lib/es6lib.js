@@ -32,4 +32,8 @@ const data = [
     { name: "Putri", kelas: "Laravel" }
 ]
 
-export const filterData = (cari) => data.filter(data => data.kelas.toLowerCase() == `${cari}`.toLowerCase())
+export const filterData = (cari) => {
+    let [ ...arr] = data
+    let output = data.filter(arr => arr.kelas.toLowerCase() == `${cari}`.toLowerCase())
+    return output
+}
