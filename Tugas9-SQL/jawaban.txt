@@ -69,4 +69,4 @@
         JOIN categories;
 
 5. merubah Data dari Database
-    UPDATE items SET price = 2500000 SHERE name LIKE '%sumsang%';
+    UPDATE items SET price = 2500000 WHERE name LIKE '%sumsang%';
