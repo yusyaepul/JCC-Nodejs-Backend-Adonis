@@ -1,0 +1,72 @@
+1. buat Database
+    CREATE DATABASE myshop;
+
+2. buat Table
+    - users = 
+        create table users(
+            id INTEGER AUTO_INCREMENT, 
+            name VARCHAR(225), 
+            email VARCHAR(225), 
+            password VARCHAR(225), 
+            PRIMARY KEY ( id )
+        );
+
+    - categories = 
+        create table categories(
+            id INTEGER AUTO_INCREMENT,
+            NAME varchar(255),
+            PRIMARY KEY (id)
+        );
+
+    - items = 
+        create table items(
+            id INTEGER AUTO_INCREMENT, 
+            name VARCHAR(225), 
+            description VARCHAR(225),
+            price VARCHAR(225),
+            stock VARCHAR(225),
+            category_id int(11),
+            PRIMARY KEY (id),
+            CONSTRAINT category_id FOREIGN KEY (category_id) REFERENCES categories (id)
+        );
+
+3. memasukan Data pada Table
+    - users = 
+        INSERT INTO users (id, name, email, password) VALUES (1, 'John Doe', 'john@doe.com', 'john123');
+        INSERT INTO users (id, name, email, password) VALUES (2, 'Jane Doe', 'jane@doe.com', 'jenita123');
+
+    - categories = 
+        INSERT INTO categories (id, name) VALUES (1, 'gadget');
+        INSERT INTO categories (id, name) VALUES (2, 'cloth');
+        INSERT INTO categories (id, name) VALUES (3, 'men');
+        INSERT INTO categories (id, name) VALUES (4, 'women');
+        INSERT INTO categories (id, name) VALUES (5, 'branded');
+
+    - items = 
+        INSERT INTO items (id, name, description, price, stock, category_id) VALUES (1, 'Sumsang b50', 'hape keren dari merek sumsang', '4000000', '1000', 1);
+        INSERT INTO items (id, name, description, price, stock, category_id) VALUES (2, 'Uniklooh', 'baju keren dari brand ternama', '500000', '50', 2);
+        INSERT INTO items (id, name, description, price, stock, category_id) VALUES (3, 'IMHO Watch', 'jam tangan anak yang jujur banget', '2000000', '10', 1);
+
+4. mengambil Data dari Database
+    a. Mengambil Data users
+        SELECT * FROM users;
+
+    b. Mengambil Data items
+        - query mengambil data dengan harga > 1000000 (satu juta)
+            SELECT * FROM items WHERE price > 1000000;
+
+        - query mengambil data dengan nama yang mirip atau serupa, disini pake kata 'unik'
+            SELECT * FROM items WHERE name LIKE '%unik%';
+    
+    c. Mengambil Data items join dengan categories
+        SELECT items.name as name,
+            items.description as description, 
+            items.price as price, 
+            items.stock as stock, 
+            items.category_id as category_id, 
+            categories.name as kategori 
+        FROM items 
+        JOIN categories;
+
+5. merubah Data dari Database
+    UPDATE items SET price = 2500000 SHERE name LIKE '%sumsang%';
