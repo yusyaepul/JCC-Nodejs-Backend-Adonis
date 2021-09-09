@@ -49,7 +49,13 @@
 
 4. mengambil Data dari Database
     a. Mengambil Data users
-        SELECT * FROM users;
+        // Cara pertama
+        SELECT id, name, email FROM users;
+
+        // Cara kedua
+        CREATE TEMPORARY TABLE temp_users AS SELECT * FROM users;
+        ALTER TABLE temp_users DROP COLUMN password;
+        SELECT * FROM temp_users; 
 
     b. Mengambil Data items
         - query mengambil data dengan harga > 1000000 (satu juta)
