@@ -20,9 +20,13 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+//Route.get('/venues', 'VenuesController.index').as('venues.index')
+//Route.post('/venues', 'VenuesController.store').as('venues.store')
+//Route.get('/venues/:id', 'VenuesController.show').as('venues.show')
+//Route.put('/venues/:id', 'VenuesController.update').as('venues.update')
+//Route.delete('/venues/:id', 'VenuesController.destroy').as('venues.delete')
 
-Route.post('/venues', 'VenuesController.store').as('venues.store')
-Route.post('/bookings', 'BookingsController.store').as('bookings.stroe')
+Route.resource('venues', 'VenuesController').apiOnly()
+Route.resource('venues.fields', 'FieldsController').apiOnly()
+
+//Route.post('/bookings', 'BookingsController.store').as('bookings.stroe')
