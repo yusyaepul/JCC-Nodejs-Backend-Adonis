@@ -5,9 +5,10 @@ import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class FieldsController {
 
-    public async index({ response }: HttpContextContract){
+    public async index({ response, params }: HttpContextContract){
 
-        let fields = await Database.from('fields').select('id', 'name', 'type', 'venue_id')
+        let venue_id = params.venue_id
+        let fields = await Database.from('fields').where('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
         response.ok({ message: 'Sukses ambil data!', data: fields })
 
     }
@@ -58,7 +59,8 @@ export default class FieldsController {
     public async show({ response, params }: HttpContextContract){
         
         let id = params.id
-        let fields = await Database.from('fields').where('id', id).select('id', 'name', 'type', 'venue_id').firstOrFail()
+        let venue_id = params.venue_id
+        let fields = await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
         return response.ok({ message: 'Sukses ambil data!', data: fields })
 
     }
@@ -79,8 +81,9 @@ export default class FieldsController {
 
     public async destroy({ response, params }: HttpContextContract){
 
+        let venue_id = params.venue_id
         let id = params.id
-        await Database.from('fields').where('id', id).delete()
+        await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).delete()
         return response.ok({ message: 'Data deleted!' })
 
     }
