@@ -53,8 +53,23 @@ export default class GenresController {
     public async show({ response, params }: HttpContextContract){
         
         let id = params.id
-        let genres = await Database.from('genres').where('id', id).select('*').firstOrFail()
-        return response.ok({ message: 'Sukses ambil data!', data: genres })
+        let genres = await Database
+                    .from('genres')
+                    .where('id', id)
+                    .select('id')
+                    .select('name')
+        
+        let dataMovies = await Database
+                        .from('movies')
+                        .where('genre_id', id)
+                        .select('id')
+                        .select('title')
+                        .select('release_date')
+                        .select('resume')
+
+        let dataArr = {...genres, movies: dataMovies}
+
+        return response.ok({ message: 'Sukses ambil data!', data: dataArr })
 
     }
 
