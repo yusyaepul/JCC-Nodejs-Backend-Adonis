@@ -21,3 +21,4 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.resource('genres', 'GenresController').apiOnly()
+Route.resource('movies', 'MoviesController').apiOnly()
