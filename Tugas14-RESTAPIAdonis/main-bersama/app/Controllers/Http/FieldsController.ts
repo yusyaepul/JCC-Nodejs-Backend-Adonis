@@ -1,14 +1,17 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import Database from '@ioc:Adonis/Lucid/Database'
-  
+import CreateFieldValidator from 'App/Validators/CreateFieldValidator'
+
+import Field from 'App/Models/Field'
 
 export default class FieldsController {
 
     public async index({ response, params }: HttpContextContract){
 
         let venue_id = params.venue_id
-        let fields = await Database.from('fields').where('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
+        //let fields = await Database.from('fields').where('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
+        let fields = await Field
+                    .query()
+                    .where('venue_id', venue_id)
         response.ok({ message: 'Sukses ambil data!', data: fields })
 
     }
@@ -16,35 +19,23 @@ export default class FieldsController {
     public async store({ request, response, params }: HttpContextContract){
         let venue_id = params.venue_id
 
-        const newFieldSchema = schema.create({
-
-            name: schema.string({ trim: true }),
-            type: schema.string({ trim: true })
-
-        })
-
         try {
 
-            let payload = await request.validate({ 
-                schema: newFieldSchema,
+            await request.validate(CreateFieldValidator)
 
-                messages: {
-                    'name.required': 'tidak dapat di proses, {{ field }} tidak boleh kosong',
-                    'type.required': 'tidak dapat di proses, {{ field }} tidak boleh kosong'
-                }
-            })
+            //let newFieldsId = await Database.table('fields').returning('id').insert({
+            //    name: request.input('name'),
+            //    type: request.input('type'),
+            //    venue_id: venue_id
+            //})
+            let newFields = new Field()
+                newFields.name = request.input('name')
+                newFields.type = request.input('type')
+                newFields.venue_id = venue_id
 
-            response.status(200).json({ 
-                data: payload 
-            })
+            await newFields.save() 
 
-            let newFieldsId = await Database.table('fields').returning('id').insert({
-                name: request.input('name'),
-                type: request.input('type'),
-                venue_id: venue_id
-            })
-
-            response.created({ message: 'Data tersimpan!', newId: newFieldsId })
+            response.created({ message: 'Data tersimpan!', newId: newFields.id })
 
         } catch (error) {
 
@@ -60,7 +51,11 @@ export default class FieldsController {
         
         let id = params.id
         let venue_id = params.venue_id
-        let fields = await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
+        //let fields = await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).select('id', 'name', 'type', 'venue_id')
+        let fields = await Field
+                    .query()
+                    .where('id', id)
+                    .andWhere('venue_id', venue_id)
         return response.ok({ message: 'Sukses ambil data!', data: fields })
 
     }
@@ -70,20 +65,33 @@ export default class FieldsController {
         let id = params.id
         let venue_id = params.venue_id
 
-        let updateData = await Database.from('fields').where('id', id).update({
-            name: request.input('name'),
-            type: request.input('address'),
-            venues_id: venue_id
-        })
+        //let updateData = await Database.from('fields').where('id', id).update({
+        //    name: request.input('name'),
+        //    type: request.input('address'),
+        //    venues_id: venue_id
+        //})
 
-        return response.ok({ message: 'Data updated!', data: updateData })
+        await Field
+            .query()
+            .where('id', id)
+            .andWhere('venue_id', venue_id)
+            .update({
+                name: request.input('name'),
+                type: request.input('type')
+            })
+
+        return response.ok({ message: 'Data updated!' })
     }
 
     public async destroy({ response, params }: HttpContextContract){
 
         let venue_id = params.venue_id
         let id = params.id
-        await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).delete()
+        //await Database.from('fields').where('id', id).andWhere('venue_id', venue_id).delete()
+        await Field
+            .query()
+            .where('id', id)
+            .andWhere('venue_id', venue_id).delete()
         return response.ok({ message: 'Data deleted!' })
 
     }
