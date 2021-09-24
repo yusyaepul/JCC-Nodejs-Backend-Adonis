@@ -7,7 +7,6 @@ export default class VenuesController {
 
     public async index({ response }: HttpContextContract){
 
-        //let venues = await Database.from('venues').select('id', 'name', 'address')
         let venues = await Venue.all()
         response.ok({ message: 'Sukses ambil data!', data: venues })
 
@@ -18,12 +17,6 @@ export default class VenuesController {
         try {
 
             await request.validate(CreateVenueValidator)
-
-            //let newVenuesId = await Database.table('venues').returning('id').insert({
-            //    name: request.input('name'),
-            //    address: request.input('address'),
-            //    phone: request.input('phone')
-            //})
 
             let newVenues = new Venue()
                 newVenues.name = request.input('name')
@@ -47,8 +40,8 @@ export default class VenuesController {
     public async show({ response, params }: HttpContextContract){
         
         let id = params.id
-        //let venues = await Database.from('venues').where('id', id).select('id', 'name', 'address').firstOrFail()
-        let venues = await Venue.find(id)
+        let venues = await Venue.query().preload('fields').where('id', id)
+
         return response.ok({ message: 'Sukses ambil data!', data: venues })
 
     }
@@ -56,11 +49,6 @@ export default class VenuesController {
     public async update({ request, response, params }: HttpContextContract){
         
         let id = params.id
-        //let updateData = await Database.from('venues').where('id', id).update({
-        //    name: request.input('name'),
-        //   address: request.input('address'),
-        //    phone: request.input('phone')
-        //})
         let updateData = await Venue.findOrFail(id)
             updateData.name = request.input('name')
             updateData.address = request.input('address')
@@ -73,7 +61,6 @@ export default class VenuesController {
     public async destroy({ response, params }: HttpContextContract){
 
         let id = params.id
-        //await Database.from('venues').where('id', id).delete()
         let delVenue = await Venue.findOrFail(id)
         delVenue.delete()
         return response.ok({ message: 'Data deleted!' })

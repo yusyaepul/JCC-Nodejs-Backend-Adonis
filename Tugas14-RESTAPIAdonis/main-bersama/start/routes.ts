@@ -20,13 +20,13 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-//Route.get('/venues', 'VenuesController.index').as('venues.index')
-//Route.post('/venues', 'VenuesController.store').as('venues.store')
-//Route.get('/venues/:id', 'VenuesController.show').as('venues.show')
-//Route.put('/venues/:id', 'VenuesController.update').as('venues.update')
-//Route.delete('/venues/:id', 'VenuesController.destroy').as('venues.delete')
+Route.resource('venues', 'VenuesController').apiOnly().middleware({ show: ['auth'] })
+Route.resource('venues.fields', 'FieldsController').apiOnly().middleware({ store: ['auth'] })
 
-Route.resource('venues', 'VenuesController').apiOnly()
-Route.resource('venues.fields', 'FieldsController').apiOnly()
+Route.post('/fields/:id/bookings', 'BookingsController.bookings').as('bookings').middleware(['auth'])
+Route.get('/fields/:id', 'FieldsController.show').as('fields.show').middleware(['auth'])
+Route.get('/bookings/:id', 'BookingsController.show').as('bookings.show').middleware(['auth'])
+Route.post('/bookings/:id', 'BookingsController.store').as('pembooking').middleware(['auth'])
 
-//Route.post('/bookings', 'BookingsController.store').as('bookings.stroe')
+Route.post('/register', 'AuthController.register').as('auth.register')
+Route.post('/login', 'AuthController.login').as('auth.login')
